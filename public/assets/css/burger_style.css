@@ -1,0 +1,39 @@
+body{
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+    background-color: rgb(250,222,1);
+}
+h1{
+    margin: auto;
+}
+.ordered{
+float: left;
+margin-left: 20px;
+margin-bottom: 100px;
+}
+
+.eaten{
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 100px;
+}
+.clearfix::after{
+    content:"";
+    display: block;
+    clear: both;
+}
+img{
+    margin: 10px;
+    width: 400px;
+    height: 300px;
+}
+.burgers_eaten{
+    background-color: rgb(41, 201, 148);
+    color: white;
+    text-align: center;
+}
+.burgers_ordered{
+    background-color: rgb(41, 201, 148);
+    color: white;
+    text-align: center;
+}
