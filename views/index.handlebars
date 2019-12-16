@@ -7,14 +7,34 @@
     <div class="ordered">
         <h3> Burgers you have ordered:</h3>
         <div class="burgers_ordered rounded">
-         
+            {{#each burger}}
+            {{#unless devoured}}
+            <li>
+                {{id}}
+                {{burger_name}}
+
+                <button data-burgerid="{{this.id}}" class="devburger">Devour</button>
+
+            </li>
+
+            {{/unless}}
+            {{/each}}
         </div>
     </div>
 
     <div class="eaten ">
         <h3>Burgers you have eaten:</h3>
         <div class="burgers_eaten rounded">
-           
+            {{#each burger}}
+            {{#if devoured}}
+            <li>
+                 {{id}}
+                {{burger_name}}
+               
+            </li>
+            {{/if}}
+            {{/each}}
+
 
         </div>
 
@@ -24,13 +44,9 @@
     <form class="create-form">
 
         <div class="form-group">
-            <label for="ca">Your Order:</label>
-            <input type="text" id="add_burger" name="burger_name" class="">
-
-
-
-
-            <button type="submit">Complete Order!</button>
+            <label for="burgerName">Your Order:</label>
+            <input type="text" id="add_burger" name="burger_name">
+            <button type="submit" id="clickSubmit">Complete Order!</button>
         </div>
     </form>
 </div>

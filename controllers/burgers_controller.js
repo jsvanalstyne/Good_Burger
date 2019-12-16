@@ -9,15 +9,16 @@ router.get("/", function(req, res){
     // 
     burgers.selectAll(function(data) {
         var burgerObject = {
+            burger: data
           
         };
-        console.log(burger);
+        // console.log(burger);
         res.render("index", burgerObject);
       });
 })
 router.post("api/burgers/", function(req, res) {
     burger.insertOne([
-      "name", "devoured"
+      "burger_name", "devoured"
     ], [
       req.body.burger_name, req.body.devoured
     ], function(result) {
@@ -33,7 +34,7 @@ router.put("api/burgers/:id", function(req, res){
         console.log("condition", condition);
     //   Using the burger.js in the models, we can update the devoured status. 
         burger.updateOne({
-          devoured: req.body.devoured
+          devoured: true
         }, condition, function(result) {
           if (result.changedRows == 0) {
             // If no rows were changed, then the ID must not exist, so 404
