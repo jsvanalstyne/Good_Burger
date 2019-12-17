@@ -6,20 +6,15 @@ var router = express.Router();
 var burgers = require("../models/burger.js");
 // Route to dispay all burgers
 router.get("/", function(req, res){
-    console.log("inside get request");
     burgers.selectAll(function(data) {
         var burgerObject = {
             burger: data
           
         };
-        // console.log(burger);
         res.render("index", burgerObject);
-        console.log("get request complete")
       });
 })
 router.post("/api/burgers", function(req, res) {
-  console.log("inside post request")
-  console.log(req.body.burger_name);
     burgers.insertOne([
       "burger_name", "devoured"
     ], [
@@ -31,11 +26,8 @@ router.post("/api/burgers", function(req, res) {
   });
 
 router.put("/api/burgers/:id", function(req, res){
-  console.log("inside put request");
     // Takes user selected burger and updates the burger to be devoured. 
         var condition = "id = " + req.params.id;
-
-        console.log("condition", condition);
     //   Using the burger.js in the models, we can update the devoured status. 
         burgers.updateOne({
           devoured: true
