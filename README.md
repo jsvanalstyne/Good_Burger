@@ -14,3 +14,11 @@ This web application allows you to add your favorite burgers and devour them as 
 - After navigating to the <code>Good_Burger</code> run <code>node server.js </code>
 - Visit the port utilized in the code (<code> PORT: 8070 </code>) on your local machine and enjoy!
 
+# Built Using
+- Node.js
+- Express.js
+- jQuery
+- [BootStrap](http://getbootstrap.com/)
+- MySQL
+- Handlebars
+
