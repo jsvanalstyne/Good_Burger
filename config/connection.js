@@ -1,5 +1,5 @@
 var mysql = require("mysql");
-
+// Creates a connection to deploy to Heroku
 var connection;
 
 if(process.env.JAWSDB_URL){

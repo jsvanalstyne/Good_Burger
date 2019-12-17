@@ -1,5 +1,6 @@
+// Require the orm.js to utilize the orm object we created with the MySQL queries. 
 var orm = require("../config/orm.js");
-
+// Burger object to pass arguments into MySQL and the selected MySQL queries for the "burgers" table. 
 var burger = {
       // Allows us to pass a query to MySQL to display all the burgers
     selectAll: function (modalcb) {

@@ -1,5 +1,6 @@
+// Requiring connection.js allows us to connect to MySql. 
 var connection = require("../config/connection.js");
-
+// Creates questions for the MySQL query.
 function printQuestionMarks(num) {
     var arr = [];
 
@@ -9,32 +10,25 @@ function printQuestionMarks(num) {
 
     return arr.toString();
 }
-
+// Alters Object to proper MySQL syntax for queries
 function objToSql(ob) {
     var arr = [];
-
-    // loop through the keys and push the key/value as a string int arr
     for (var key in ob) {
         var value = ob[key];
-        // check to skip hidden properties
         if (Object.hasOwnProperty.call(ob, key)) {
-            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
-            // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-            // e.g. {sleepy: true} => ["sleepy=true"]
             arr.push(key + "=" + value);
         }
     }
-
-    // translate array of strings to a single comma-separated string
     return arr.toString();
 }
 
 
-
+// This orm object alllows for different MySql queries based on which method is requested. 
 var orm = {
+    // Method to display all of the items in the table
     selectAll: function (tableInput, ormcb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, result) {
@@ -44,6 +38,7 @@ var orm = {
             ormcb(result);
         });
     },
+    // Method to create a new burger
     insertOne: function (table, cols, vals, ormcb) {
         var queryString = "INSERT INTO " + table;
 
@@ -64,6 +59,7 @@ var orm = {
             ormcb(result);
         });
     },
+    // Method used to update an existing burger
     updateOne: function (table, objColVals, condition, ormcb) {
         var queryString = "UPDATE " + table;
 
@@ -82,4 +78,5 @@ var orm = {
         });
     }
 }
+// Exporting the orm object to be used later. 
 module.exports = orm;
