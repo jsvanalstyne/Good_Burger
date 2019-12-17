@@ -1,12 +1,22 @@
-$(".devburger").on("click", function(event) {
-    var id = $(this).data("id");
-    var devouredState = {
-      devoured: true
-    }
-    // Send the PUT request.
+$(document).ready(function() {
+  console.log("document loaded")
+
+  $(document).on("click", ".devburger", function(event) {
+
+    var id = $(this).data("burgerid");
+    console.log(id);
+    
+    $(this).attr("data-devState", 1)
+    console.log(this);
+    // console.log(data-devState);
+     var devourBurger ={
+      devoured: $(this).attr("data-devState")
+     }
+    console.log(devourBurger);
+   
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
-      data: devouredState
+      data: devourBurger
     }).then(
       function() {
         console.log("Burger has been devoured");
@@ -16,20 +26,20 @@ $(".devburger").on("click", function(event) {
     );
   });
   
-  $("#clickSubmit").on("click", function(event) {
+  $(document).on("click", "#clickSumbit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
     console.log("submitclicked");
     var newBurger = {
       burger_name: $("#add_burger").val().trim(),
-      devoured: false
+      devoured: 0
     }
     console.log(newBurger);
 
     // Send the POST request.
     $.ajax("/api/burgers", {
       type: "POST",
-      data: newBurger
+      data: newBurger,
     }).then(
       function() {
         console.log("Burger Added!");
@@ -38,3 +48,4 @@ $(".devburger").on("click", function(event) {
       }
     );
   });
+});
